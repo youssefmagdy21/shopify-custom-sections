@@ -430,17 +430,43 @@ body {
 	letter-spacing: calc(-0.02 * 18px);
 	display: flex;
 	align-items: center;
+	position: relative;
 }
-/* TO DO
-	SLECTIONS SWITCH ANIMATION
-*/
 .product-popup__colorpicker .colorpicker label {
 	flex: 1;
 	padding: 10px;
+	padding-left: 15px;
 	cursor: pointer;
 	border: black 1px solid;
 	position: relative;
-	transition: background-color ease-in-out 300ms;
+	transition: color ease 300ms;
+}
+.colorpicker .checked-item {
+	height: 100%;
+	width: 50%;
+	position: absolute;
+	background-color: var(--clr-black);
+	z-index: -1;
+	top: 0;
+	opacity: 0;
+	transition: left ease 300ms, opacity ease 300ms;
+}
+.product-popup__colorpicker .colorpicker label:has(input:checked) {
+	color: var(--clr-white);
+}
+.product-popup__colorpicker
+	.colorpicker
+	label:first-of-type:has(input:checked)
+	~ .checked-item {
+	opacity: 1;
+	left: 0;
+}
+.product-popup__colorpicker
+	.colorpicker
+	label:last-of-type:has(input:checked)
+	~ .checked-item {
+	opacity: 1;
+	left: 50%;
 }
 .product-popup__colorpicker .colorpicker label::before {
 	content: "";
@@ -457,10 +483,6 @@ body {
 }
 .product-popup__colorpicker .colorpicker label:last-of-type::before {
 	background-color: var(--radio-choice-clr-2);
-}
-.product-popup__colorpicker .colorpicker label:has(input:checked) {
-	background-color: var(--clr-black);
-	color: var(--clr-white);
 }
 .product-popup__colorpicker .colorpicker input {
 	display: none;
@@ -518,10 +540,13 @@ body {
 	height: 100px;
 	overflow: scroll;
 	background-color: #ffffff;
-	display: none;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility ease-in-out 300ms, opacity ease-in-out 300ms;
 }
 .sizepicker-menu.active {
-	display: block;
+	visibility: visible;
+	opacity: 1;
 }
 .sizepicker-menu::-webkit-scrollbar {
 	display: none;
@@ -587,12 +612,3 @@ body {
 }
 /* //////////////////////////////////////// */
 /* grid section styles */
-
-/* 
-TO DO
-
->> popup animation
->> color switch animation
->> size menu animation
-
-*/
