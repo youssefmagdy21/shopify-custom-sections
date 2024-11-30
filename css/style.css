@@ -61,6 +61,8 @@ h6 {
 /* general styles */
 body {
 	font-family: var(--ff-primary);
+	/* remove highlight when tapping buttons */
+	-webkit-tap-highlight-color: transparent;
 }
 .btn {
 	display: flex;
